@@ -1,3 +1,4 @@
+using MVC_Demo.Controllers;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MVC_Demo
@@ -7,10 +8,13 @@ namespace MVC_Demo
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddControllers();
+
             var app = builder.Build();
 
             app.UseRouting();
-
+            #region
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/Home", async context =>
@@ -39,6 +43,21 @@ namespace MVC_Demo
                 });
             });
             //app.MapGet("/Home", () => "Hello World!");
+            #endregion
+
+
+            app.MapControllerRoute(
+                name:"Default",
+                pattern: "/{Controller = Home}/{Action = Index}",
+                defaults: new {Controller = "Home", Action = "Index"}
+                );
+            app.MapControllerRoute(
+               name: "Default",
+               pattern: "/{Controller = Home}/{Action = AboutUs}",
+               defaults: new { Controller = "Home", Action = "AboutUs" }
+               );
+
+
             app.Run(async (HttpContext) => { await HttpContext.Response.WriteAsync("Page not found"); });
 
             app.Run();
