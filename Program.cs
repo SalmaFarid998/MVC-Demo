@@ -1,3 +1,5 @@
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 namespace MVC_Demo
 {
     public class Program
@@ -15,9 +17,25 @@ namespace MVC_Demo
                 {
                     await context.Response.WriteAsync("You are at the home page!");
                 });
-                endpoints.MapGet("/Products", async context =>
+                endpoints.MapGet("/Products/{ID:int?}", async context =>
                 {
-                    await context.Response.WriteAsync("You are at the products page!");
+
+                    var idData = context.Request.RouteValues["ID"];
+                    if (idData is not null)
+                    {
+                        int data = Convert.ToInt32(idData);
+                        await context.Response.WriteAsync($"You are at the page of prod {data}!");
+                    }
+                    else
+                    {
+                      await context.Response.WriteAsync("You are at Products Page!");
+                    }
+                });
+                endpoints.MapGet("/Books/{ID}/{Author:alpha:minlength(5):maxlength(10)}", async context =>
+                {
+                    int id = Convert.ToInt32(context.Request.RouteValues["ID"]);
+                    string author = context.Request.RouteValues["Author"].ToString();
+                    await context.Response.WriteAsync($"You are at the books page with id {id} and author {author}!");
                 });
             });
             //app.MapGet("/Home", () => "Hello World!");
