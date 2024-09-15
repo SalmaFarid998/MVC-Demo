@@ -12,11 +12,27 @@ namespace MVC_Demo.Controllers
 
             //return Content("Hello from content result");
 
-            return Redirect("/Home/AboutUs");
+            //return Redirect("/Home/AboutUs");
+
+            return View();
         }
-        public string AboutUs()
+        public ActionResult AboutUs()
         {
-            return "This is about us action";
+            //return "This is about us action";
+
+            return View();
+        }
+        public ActionResult ContactUs()
+        {
+            //return "This is about us action";
+
+            return View();
+        }
+        public ActionResult Privacy()
+        {
+            //return "This is about us action";
+
+            return View();
         }
     }
 }

@@ -1,0 +1,43 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @* <title>@ViewBag.Title</title> *@
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+    <header>
+        <center>
+           
+          @* HTML Tag *@
+           @* <a href="/Home/Index" class="btn btn-primary">Home</a>
+            <a href="/Home/AboutUs" class="btn btn-primary">About Us</a>
+            <a href="/Home/ContactUs" class="btn btn-primary">Contact Us</a>
+            <a href="/Home/Privacy" class="btn btn-primary">Privacy</a> *@
+
+            @*HTML Helper*@
+            @* @Html.ActionLink("Home","Index","Home",null,new{@class="btn btn-primary"})
+            @Html.ActionLink("About Us", "AboutUs", "Home", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Contact Us", "ContactUs", "Home", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Privacy", "Privacy", "Home", null, new { @class = "btn btn-primary" }) *@
+      
+            @*Tag Helper*@
+            <a asp-Controller="Home" asp-action="Index" class="btn btn-primary">Home</a>
+            <a asp-Controller="Home" asp-action="AboutUs" class="btn btn-primary">About Us</a>
+            <a asp-Controller="Home" asp-action="ContactUs" class="btn btn-primary">Contact Us</a>
+            <a asp-Controller="Home" asp-action="Privacy" class="btn btn-primary">Privacy</a>
+
+        </center> 
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer>
+        <center>Copyright Salma Nagy @DateTime.Now.Year</center>
+    </footer>
+</body>
+</html>
