@@ -15,7 +15,7 @@ namespace MVC_Demo
 
             app.UseRouting();
             app.UseStaticFiles();
-            //#region
+            #region
             //app.UseEndpoints(endpoints =>
             //{
             //    endpoints.MapGet("/Home", async context =>
@@ -44,12 +44,12 @@ namespace MVC_Demo
             //    });
             //});
             ////app.MapGet("/Home", () => "Hello World!");
-            //#endregion
+            #endregion
 
 
             app.MapControllerRoute(
                 name: "Default",
-                pattern: "/{Controller = Home}/{Action = Index}",
+                pattern: "/{Controller=Home}/{Action=Index}",
                 defaults: new { Controller = "Home", Action = "Index" }
                 );
             //app.MapControllerRoute(
